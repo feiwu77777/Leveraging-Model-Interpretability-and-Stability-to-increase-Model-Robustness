@@ -2,6 +2,8 @@
 
 This is the backbone code of the paper [Leveraging Model Interpretability and Stability to increase Model Robustness](https://arxiv.org/abs/1910.00387).
 
+## Overview
+
 ## Imagenet file how to use
 - First, the image dataset divided into training, validation and test set and the CNN is trained with the image training set.
 - Then use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on all 3 sets.
