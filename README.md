@@ -7,6 +7,7 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Then use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on all 3 sets.
 - To incorporate LCR, first use build_mutations.py to create modified version of the CNN.
 - Then use 'mutant_prediction.py' to calculate the LCR of desired image set.
+- After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
 
 ## cifar10 file how to use
 - For now please ignore the scripts folder and use the 'conductance&mutation.ipynb' notebook to calculate conductance and LCR
