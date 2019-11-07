@@ -8,8 +8,9 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 ![matchstick](match_cond.png)
 ![matchstick](orange_cond.png)
 - Above images of a matchstick and oranges are both predicted as a matchstick object.
-- Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is give to the CNN.
+- Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is given to the CNN.
 - We can observe that the prediction of the orange image doesn't trigger those feature maps meaning that the prediction of this image is likely false.
+- Conductance is the name of the metric computed on these feature maps and they are used to measure the reaction strength of these feature maps.
 
 
 ## Imagenet file how to use
