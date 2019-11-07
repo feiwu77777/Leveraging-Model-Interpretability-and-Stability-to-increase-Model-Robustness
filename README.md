@@ -11,8 +11,7 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is given to the CNN.
 - We can observe that the prediction of the orange image doesn't trigger those feature maps meaning that the prediction of this image is likely false.
 - Conductance is the name of the metric computed on these feature maps and they are used to measure the reaction strength of these feature maps.
-
-
+## How to automate the distinction precess of wrong and correct predictions
 ## Imagenet file how to use
 - First, the image dataset divided into training, validation and test set and the CNN is trained with the image training set.
 - Then use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on all 3 sets.
