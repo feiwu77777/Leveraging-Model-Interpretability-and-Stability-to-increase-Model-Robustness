@@ -1,10 +1,15 @@
 # Leveraging Model Interpretability and Stability to increase Model Robustness
 
 This is the backbone code of the paper [Leveraging Model Interpretability and Stability to increase Model Robustness](https://arxiv.org/abs/1910.00387).
-
-## Overview
+## Objective
+- The purpose of this work is to detect potential prediction errors of a CNN and cancel those predictions.
+- Inputs whose prediction are cancelled are not further processed by the CNN. Depending on the application, those inputs can be processed by a human.
+## How to detect wrong prediction
 ![matchstick](match_cond.png)
 ![matchstick](orange_cond.png)
+- Above images of a matchstick and oranges are both predicted as a matchstick object.
+- Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is give to the CNN.
+- We can observe that the prediction of the orange image doesn't trigger those feature maps meaning that the prediction of this image is likely false.
 
 
 ## Imagenet file how to use
