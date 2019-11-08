@@ -10,14 +10,14 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Above images of a matchstick and oranges are both predicted as a matchstick object.
 - Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is given to the CNN.
 - We can observe that the prediction of the orange image doesn't trigger those feature maps meaning that the prediction of this image is likely false.
-- Conductance is the name of the metric computed on these feature maps and they are used to measure the reaction strength of these feature maps.
-## How to automate the distinction precess of wrong and correct predictions
+- Conductance is the name of the metric computed on these feature maps and they are used to measure the reaction strength of these feature maps. See the [work](https://arxiv.org/abs/1805.12233) of Dhamdhere et al. for further details. 
+## How to automate the distinction process of wrong and correct predictions
 - Given an image dataset, we calculate the conductance of all images on a selected number of feature maps.
 - The conductance data is then just some structured data, with the number of row being the number of image and the number of column being the number of feature map.
-- We divide he conductance data into training, validation and test to train and evaluate a binary classifier that will learn to differentiate conductance of wrong and correct predictions.
+- We divide the conductance data into training, validation and test to train and evaluate a binary classifier that will learn to differentiate conductance of wrong and correct predictions.
+- Additionally, we can include the Label Change Rate (LCR) of these images to have better classification results. LCR is another metric that can differentiate wrong and correct prediction of CNNs. See the [work](https://arxiv.org/abs/1812.05793) of Wang et al. for further details.
 ## Imagenet file how to use
-- First, the image dataset is divided into training, validation and test set and the CNN is trained with the image training set.
-- Then use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on all 3 sets.
+- Use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on image training, validation and test sets.
 - To incorporate LCR, first use build_mutations.py to create modified version of the CNN.
 - Then use 'mutant_prediction.py' to calculate the LCR of desired image set.
 - After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
