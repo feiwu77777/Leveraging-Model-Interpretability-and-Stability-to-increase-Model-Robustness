@@ -5,7 +5,7 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - The purpose of this work is to detect potential prediction errors of a CNN and cancel those predictions.
 - Inputs whose prediction are cancelled are not further processed by the CNN. Depending on the application, those inputs can be processed by a human.
 ## How to detect wrong prediction
-![matchstick](https://www.dropbox.com/s/jyylu29gwpbvovt/after1.png?dl=0)
+![matchstick](https://www.dropbox.com/s/jyylu29gwpbvovt/after1.png?dl=1)
 ![matchstick](orange_cond.png)
 - Above images of a matchstick and oranges are both predicted as a matchstick object.
 - Through a serie of experiments, feature maps 720, 1232 and 1257 are identified as feature maps that react strongly when a matchstick image is given to the CNN.
