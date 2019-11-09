@@ -3,7 +3,7 @@
 This is the backbone code of the paper [Leveraging Model Interpretability and Stability to increase Model Robustness](https://arxiv.org/abs/1910.00387).
 ## Objective
 - The purpose of this work is to detect potential prediction errors of a CNN and cancel those predictions.
-- Inputs whose prediction are cancelled are not further processed by the CNN. Depending on the application, those inputs can be processed by a human.
+- Inputs whose prediction are cancelled are not further processed by the CNN. If the area of application allows it (medical diagnosis, malware detection, autonomous driving), those inputs can be processed by a supplementary system (human specialist, radar/lidar).
 ## How to detect wrong prediction
 ![matchstick](match_cond.png)
 ![orange](orange_cond.png)
