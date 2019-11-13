@@ -4,22 +4,14 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 ## Objective
 - The purpose of this work is to detect potential prediction errors of a CNN and cancel those predictions.
 - Inputs whose prediction are cancelled are not further processed by the CNN. If the area of application allows it (medical diagnosis, malware detection, autonomous driving), those inputs can be processed by a supplementary system (human specialist, radar/lidar).
-## How to detect wrong prediction
-![matchstick](match_cond.png)
-![orange](orange_cond.png)
-- Above images of a matchstick and oranges are both predicted as a matchstick object by a CNN (InceptionV3) that correctly predicted the matchstick image but made an error on the orange image.
-- Through a serie of experiments, the 720th, 1232th and 1257th feature maps from layer mixed8 of the InceptionV3 network are identified as feature maps that react strongly when a matchstick image is given to the CNN. They are defined as feature maps specific to the class of matchstick.
-- We can observe that the prediction as matchstick of the orange image doesn't trigger those feature maps whereas the prediction of the matchstick image does. Thus, we can differentiate a wrong prediction and a correct prediction by visualizing the feature maps of the corresponding predicted class (matchstick here).
-- Conductance is the name of the metric computed on these feature maps (not activations) and they are used to measure the reaction strength of these feature maps. See the [work](https://arxiv.org/abs/1805.12233) of Dhamdhere et al. for further details.
-- Each neuron (square) has a conductance value and the conductance of a feature map is the sum of its neuron's conductance.
-## How to automate the distinction process of wrong and correct predictions
-- Given an image dataset, we calculate the conductance of all images on a selected number of feature maps. Two examples are shown below with conductance (of all feature maps from layer mixed8) obtained on the previous two images. Once again, we can distinguish the wrong and the correct predictions by looking at their pattern of conductance.
-![allCond_matchstick](https://user-images.githubusercontent.com/34350063/68534539-e4808780-0335-11ea-9e1f-940982988ad2.png)
-![allCond_orange](https://user-images.githubusercontent.com/34350063/68534541-eea28600-0335-11ea-80c0-c1e93f664242.png)
-- The conductance data obtained from the whole image dataset is then just some structured data, with the number of row being the number of image and the number of column being the number of feature map.
-- We divide the conductance data into training, validation and test to train and evaluate a binary classifier that will learn to differentiate conductance of wrong and correct predictions.
-- Additionally, we can include the Label Change Rate (LCR) of these images to have better classification results. LCR is another metric that can differentiate wrong and correct prediction of CNNs (See the [work](https://arxiv.org/abs/1812.05793) of Wang et al. for further details). It can be used on its own to distinguish wrong and correct predictions and we show that when conductance and LCR are used jointly to solve this task, wrong and correct prediction can be ditinguished more accurately.
+## Overview
+- The Conductance and the Label Change Rate (LCR) of a prediction are metrics used to determine if the prediction is likely to be wrong or correct
+- [Conductance](https://arxiv.org/abs/1805.12233) rely on model interpretability and check if the prediction result was obtained by emphasizing corresponding model feature maps.
+- [Label Change Rate](https://arxiv.org/abs/1812.05793) rely on the stability of the prediction to minor model parameter changes to determine if the prediction is wrong or not.
+- After a CNN made a prediction on an input image, both LCR and conductance can be extracted from the process to examine whether the prediction is wrong or not.
+![steps_colored](https://user-images.githubusercontent.com/34350063/68809582-853fb180-066c-11ea-8ae1-367ee9311645.png)
 ## Experimental results
+- 
 ## Imagenet file how to use
 - Use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on image training, validation and test sets.
 - To incorporate LCR, first use build_mutations.py to create modified version of the CNN.
