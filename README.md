@@ -9,7 +9,7 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - [Conductance](https://arxiv.org/abs/1805.12233) rely on model interpretability and check if the prediction result was obtained by emphasizing corresponding model feature maps.
 - [Label Change Rate](https://arxiv.org/abs/1812.05793) rely on the stability of the prediction to minor model parameter changes to determine if the prediction is wrong or not.
 - After a CNN made a prediction on an input image, both LCR and conductance can be extracted from the process to examine whether the prediction is wrong or not.
-![steps_colored](https://user-images.githubusercontent.com/34350063/68809582-853fb180-066c-11ea-8ae1-367ee9311645.png =200x200)
+![steps_colored](https://user-images.githubusercontent.com/34350063/68809582-853fb180-066c-11ea-8ae1-367ee9311645.png=200x200)
 ## Experimental results
 - Performance of LCR, conductance, both LCR & conductance to distinguish wrong and correct prediction are displayed in the following graphs
 
