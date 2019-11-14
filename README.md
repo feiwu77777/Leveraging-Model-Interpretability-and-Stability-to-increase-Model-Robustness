@@ -14,7 +14,7 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Performance (measured by AUROC) of LCR, Conductance, both LCR & Conductance to distinguish wrong and correct predictions of 3 CNN trained over 3 datasets (CIFAR10, 50 classes ImageNet, 100 classes ImageNet are displayed in the following graphs:
 ![Screenshot from 2019-11-13 23-38-57](https://user-images.githubusercontent.com/34350063/68810632-f54f3700-066e-11ea-900a-02a6efc3cb60.png)
 - Results of using LCR & Conductance to classify test set predictions of the 3 CNN (trained over the 3 respective datasets) are displayed in the following table:
-![Screenshot from 2019-11-14 13-58-21](https://user-images.githubusercontent.com/34350063/68859470-9a0d5b00-06e7-11ea-85d4-0cc9e870a4db.png)
+![Screenshot from 2019-11-14 14-14-03](https://user-images.githubusercontent.com/34350063/68860117-21a79980-06e9-11ea-9ac2-9e90c84ce78d.png)
 
 ## Imagenet file how to use
 - Use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on image training, validation and test sets.
