@@ -23,6 +23,6 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
 
 ## cifar10 file how to use
-- For now please ignore the scripts folder and use the 'conductance&mutation.ipynb' notebook to calculate conductance and LCR
+- Please follow the 'conductance&mutation.ipynb' notebook to see how conductance and LCR of data are calculated and used to train an error detector to differentiate wrong and correct predictions of a CNN
 
 ## work in progress to make the repository's code easier to read
