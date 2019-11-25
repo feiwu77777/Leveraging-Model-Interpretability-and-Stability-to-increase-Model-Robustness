@@ -16,13 +16,13 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Results of using LCR & Conductance to classify test set predictions of the 3 CNN (trained over the 3 respective datasets) are displayed in the following table:
 ![Screenshot from 2019-11-14 14-14-03](https://user-images.githubusercontent.com/34350063/68860117-21a79980-06e9-11ea-9ac2-9e90c84ce78d.png)
 
+## cifar10 file how to use
+- Please follow the 'conductance&mutation.ipynb' notebook to see how conductance and LCR of data are calculated and used to train an error detector to differentiate wrong and correct predictions of a CNN
+
 ## Imagenet file how to use
 - Use 'training_conductance.py' and 'val_test_conductance.py' to calculate the conductance on image training, validation and test sets.
 - To incorporate LCR, first use build_mutations.py to create modified version of the CNN.
 - Then use 'mutant_prediction.py' to calculate the LCR of desired image set.
 - After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
-
-## cifar10 file how to use
-- Please follow the 'conductance&mutation.ipynb' notebook to see how conductance and LCR of data are calculated and used to train an error detector to differentiate wrong and correct predictions of a CNN
 
 ## work in progress to make the repository's code easier to read
