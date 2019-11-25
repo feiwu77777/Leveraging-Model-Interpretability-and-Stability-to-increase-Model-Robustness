@@ -194,7 +194,7 @@ def process_cond(convLayers,topFMs, topMeans, wrongs, num_class):
     return finalWrongs
 
 
-  def calculate_LCR(model, x_train, index, model_mutants, num_class = 10):
+def calculate_LCR(model, x_train, index, model_mutants, num_class = 10):
     
     #create a list that map the LCR to the conductance of the good training sample
     L = []
