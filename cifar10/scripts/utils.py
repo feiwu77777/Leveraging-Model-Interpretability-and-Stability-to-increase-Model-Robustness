@@ -194,6 +194,89 @@ def process_cond(convLayers,topFMs, topMeans, wrongs, num_class):
     return finalWrongs
 
 
+  def calculate_LCR(model, x_train, index, model_mutants, num_class = 10):
+    
+    #create a list that map the LCR to the conductance of the good training sample
+    L = []
+    for c in range(num_class):
+        L.append(index[c])
+    L = np.concatenate(L, axis = 0)
+    
+    #reload the orignal model each time else model would be the last mutant
+    model.load_weights('cifar10resnet_weights.h5')
+    pred = np.argmax(model.predict(x_train[L]), axis = 1)
+    LCR = np.zeros(len(pred))
+    
+    #iterate over mutant to use them to predict x
+    for n in range(len(model_mutants)):
+        print("---- n="+str(n)+" ----", end = "\r")
+        model.set_weights(model_mutants[n])
+        mutate_pred = np.argmax(model.predict(x_train[L]), axis = 1)
+        difference = mutate_pred != pred
+        LCR[difference] += 1
+    
+    LCR = LCR/len(model_mutants)
+    return LCR
+  
+def calculate_cond(model, x_train, train_pred, index, num_class = 10)
+
+    #get all conv layer in the network
+    #for resnet, only the output of resBlocks are considered (skip connection + normal connection)
+    convLayers = []
+    for i in range(len(model.layers)):
+        if "add" in model.layers[i].name:
+            convLayers.append(model.layers[i+1])
+                
+    #group conv layers by layer with the same number of channel
+    convBlocks = getBlocks(convLayers)
+    
+    allBlockCond = []
+    for block in convBlocks:
+        #input_tensor is the input tensor given to the model
+        #outputs are gradients and activations of block 
+        input_tensor, outputs, sess = layerInit(model, num_class, block, True)
+        originIndex = {}
+        conductances = {}
+
+        #iterating over all wrong/correct prediction to calculate their conductance
+        for i in range(len(index)):
+            array = x_train[index[i]]
+            pred = train_pred[index[i]]
+            print(i, end = "\r")
+
+            #calculate the gradient of the predicted index wrt to the activation output of block
+            grads, activs = integratedGrad(array, input_tensor, [outputs[pred],outputs[-1]], sess)
+            grads = np.array(grads)
+            activs = np.array(activs)
+
+            #calculate the conductance for neurons of block
+            delta_activs = activs[:,1:,:,:,:] - activs[:,:-1,:,:,:]
+            cond = np.sum(grads[:,:,1:,:,:,:]*delta_activs, axis = 2)
+            cond = np.mean(cond, axis = (0,2,3)) #averaging over axis 0 for purpose of squeezing
+
+            #store conductance grouped by the class in which the image is predicted
+            #originIndex store the original index of the image so its true label can be found
+            if pred not in conductances.keys():
+                originIndex[pred] = []
+                conductances[pred] = []
+                originIndex[pred].append(index[i])
+                conductances[pred].append(cond)
+            else:
+                originIndex[pred].append(index[i])
+                conductances[pred].append(cond)
+                
+        allBlockCond.append(conductances)
+
+    #reformatting the conductances of all layers
+    conductances = allBlockCond[0]
+    for c in range(num_class):
+        for i in range(len(conductances[c])):
+            conductances[c][i] = list(conductances[c][i])
+            for b in range(1, len(convBlocks)):
+                conductances[c][i].extend(list(allBlockCond[b][c][i]))
+                
+    return conductances, originIndex 
+  
 def report_acc(testD_res, testL, thresh, Print):
     acc = 0
     recallR = 0
