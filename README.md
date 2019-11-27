@@ -25,4 +25,4 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Then use 'mutant_prediction.py' to calculate the LCR of desired image set.
 - After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
 
-## work in progress to make the repository's code easier to read
+## work in progress to make the repository's code easier to read.
