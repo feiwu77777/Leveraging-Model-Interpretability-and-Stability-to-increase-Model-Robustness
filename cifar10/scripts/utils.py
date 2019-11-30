@@ -766,8 +766,11 @@ def process_model_params(model):
     return params_num, allWeights
 
 def create_mutations(mode, model, params_num, allWeights, 
-                     origin_weight, gamma, val_acc, val_gen, limit = 100):
-       
+                     origin_weight, gamma, test_acc, x_test, y_label, limit = 100):
+
+    #mode is either Gaussian Fuzz or Neuron Activation Inverse. Both are different kind of operation to modify weights.
+    #gamma is the percentage of weights to be modified
+
     mutations = []
     count = 0
     while len(mutations) != limit:
@@ -790,9 +793,11 @@ def create_mutations(mode, model, params_num, allWeights,
                     if mode == 'NAI':
                         w[:,:,:,index] = -1*w[:,:,:,index]
                     model.layers[allWeights[i][0]].set_weights([w,b])
-        acc = model.evaluate_generator(val_gen, steps = val_gen.n // val_gen.batch_size, verbose = 1)[1]
+
+        test_pred = np.argmax(model.predict(x_test), axis = 1)
+        test_acc = np.mean(test_pred == test_label)
         print(acc)
-        if acc > 0.9*val_acc:
+        if acc > 0.9*test_acc:
             mutations.append(model.get_weights())
     return mutations
 

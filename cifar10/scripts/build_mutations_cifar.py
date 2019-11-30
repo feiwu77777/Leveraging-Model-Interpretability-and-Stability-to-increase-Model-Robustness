@@ -27,7 +27,7 @@ import pickle
 from keras.preprocessing import image
 from utils import *
 
-
+#loading dataset
 num_class = 10
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
@@ -42,6 +42,7 @@ x_test -= x_train_mean
 y_train = keras.utils.to_categorical(y_train, num_class)
 y_test = keras.utils.to_categorical(y_test, num_class)
 
+#loading model
 model = resnet_v1(input_shape=input_shape, depth = 3*6+2)
 model.load_weights('cifar10resnet_weights.h5')
 
@@ -51,8 +52,10 @@ test_acc = np.mean(test_pred == test_label)
 
 params_num, allWeights = process_model_params(model)
 
+
 if __name__ == '__main__':
+    #mutations is a list that contains the weights of every mutant
     mutations = create_mutations('GF', model, params_num, allWeights, 
                                  'cifar10resnet_weights.h5', 0.015, 
-                                 test_acc, x_test, y_test, limit = 100)
+                                 test_acc, x_test, test_label, limit = 100)
     pickle.dump(mutations, open('mutations_GF_0.015_CIFAR.p', 'wb'))
