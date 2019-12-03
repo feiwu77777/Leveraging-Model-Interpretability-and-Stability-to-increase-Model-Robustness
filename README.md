@@ -39,10 +39,11 @@ python imagenet/scripts/build_mutations.py --num_class=<num_class> --limit=<limi
 ```bash
 python imagenet/scripts/mutant_predistions.py --num_class=<num_class>
 ```
-- <num_class> is either 50 or 100, it corresponds to either operate on the 50-classes Imagenet dataset or the 100-classes Imagenet dataset
-- <limit> is the total number of modified CNN to create
-- <gamma> is the percentage of model weights to modify
-- <mode> is the type of operation to apply for modifying the weights. It is either 'NAI' (Neuron Activation Inverse or 'GF' (Gaussian Fuzz).
-After computing conductance (with or not LCR) please follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
+- 'num_class' is either 50 or 100, it corresponds to either operate on the 50-classes Imagenet dataset or the 100-classes Imagenet dataset
+- 'limit' is the total number of modified CNN to create
+- 'gamma' is the percentage of model weights to modify
+- 'mode' is the type of operation to apply for modifying the weights. It is either 'NAI' (Neuron Activation Inverse or 'GF' (Gaussian Fuzz).\
+
+After computing conductance (with or not LCR) follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
 
 ## work in progress to make the repository's code easier to read.
