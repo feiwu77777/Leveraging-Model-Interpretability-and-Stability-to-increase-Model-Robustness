@@ -12,12 +12,20 @@ import numpy as np
 from imagenet_utils import *
 from keras.preprocessing.image import ImageDataGenerator
 
-num_class = 100
-model = create_net('inception_100_weights_finetuneAll_2epochs.h5', num_class)
+
+parser = argparse.ArgumentParser(description='parser to get the value of num_class')
+parser.add_argument("--num_class", default = 100, help = 'can be either 50 or 100')
+args = parser.parse_args()
+
+num_class = args.num_class
+
+model = create_net('model/reduced_weights{}.h5'.format(num_class), num_class)
+
 paths = [
-    '/data/Datasets/ImageNet/train100/',
-    '/data/Datasets/ImageNet/val100/',
-    '/data/Datasets/ImageNet/test100/']
+    '/data/ImageNet/train{}/'.format(num_class),
+    '/data/ImageNet/val{}/'.format(num_class),
+    '/data/ImageNet/test{}/'.format(num_class)]
+    
 paths_string = ['train100', 'val100', 'test100']
 root_dir = 'mutant_predictions'
 

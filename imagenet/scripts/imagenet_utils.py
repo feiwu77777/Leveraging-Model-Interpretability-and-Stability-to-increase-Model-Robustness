@@ -18,14 +18,22 @@ import seaborn as sns
 import pickle
 
 
-def create_net(weights_path, num_class):
-    net = InceptionV3(weights = 'imagenet', include_top = False, input_shape = (299,299,3))
+def get_convLayer(model):
+    convLayers = []
+    for i in range(len(model.layers)):
+        if ("mixed" in model.layers[i].name) & (model.layers[i].name[-2] != '_'):
+            convLayers.append(model.layers[i])
+    return convLayers
+
+def create_net(weights_path, num_class, input_shape = (299,299,3)):
+    net = InceptionV3(weights = None, include_top = False, input_shape = input_shape)
     x = net.output
     x = GlobalAveragePooling2D()(x)
     x = Dense(num_class)(x)
     outputs = Activation('softmax')(x)
     model = Model(inputs = net.input, outputs = outputs)
-    model.load_weights(weights_path)
+    if weights_path:
+        model.load_weights(weights_path)
     return model
 
 def load(class_ind,img_ind,path):

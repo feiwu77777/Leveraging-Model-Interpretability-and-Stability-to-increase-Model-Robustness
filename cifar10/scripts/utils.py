@@ -217,23 +217,27 @@ def calculate_LCR(model, x_train, index, model_mutants, num_class = 10):
     
     LCR = LCR/len(model_mutants)
     return LCR
-  
-def calculate_cond(model, x_train, train_pred, index, num_class = 10)
 
-    #get all conv layer in the network
-    #for resnet, only the output of resBlocks are considered (skip connection + normal connection)
+def get_convLayer(model):
     convLayers = []
     for i in range(len(model.layers)):
         if "add" in model.layers[i].name:
             convLayers.append(model.layers[i+1])
+    return convLayers
+
+def calculate_cond(model, x_train, train_pred, index, num_class = 10)
+
+    #get all conv layer in the network
+    #for resnet, only the output of resBlocks are considered (skip connection + normal connection)
+    convLayers = get_convLayer(model)
                 
-    #group conv layers by layer with the same number of channel
+    #group conv layers by number of channel
     convBlocks = getBlocks(convLayers)
     
     allBlockCond = []
     for block in convBlocks:
         #input_tensor is the input tensor given to the model
-        #outputs are gradients and activations of block 
+        #outputs are gradients and activations associated to the output of block 
         input_tensor, outputs, sess = layerInit(model, num_class, block, True)
         originIndex = {}
         conductances = {}
@@ -249,7 +253,7 @@ def calculate_cond(model, x_train, train_pred, index, num_class = 10)
             grads = np.array(grads)
             activs = np.array(activs)
 
-            #calculate the conductance for neurons of block
+            #calculate the conductance for neurons/outputs of block
             delta_activs = activs[:,1:,:,:,:] - activs[:,:-1,:,:,:]
             cond = np.sum(grads[:,:,1:,:,:,:]*delta_activs, axis = 2)
             cond = np.mean(cond, axis = (0,2,3)) #averaging over axis 0 for purpose of squeezing
@@ -274,7 +278,7 @@ def calculate_cond(model, x_train, train_pred, index, num_class = 10)
             conductances[c][i] = list(conductances[c][i])
             for b in range(1, len(convBlocks)):
                 conductances[c][i].extend(list(allBlockCond[b][c][i]))
-                
+
     return conductances, originIndex 
   
 def report_acc(testD_res, testL, thresh, Print):
@@ -814,3 +818,5 @@ def calc_LCR(model, x, mutations):
         LCR[LC] += 1
     LCR = LCR/len(mutations)
     return LCR
+
+
