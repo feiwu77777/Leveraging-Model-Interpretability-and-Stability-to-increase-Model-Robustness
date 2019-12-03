@@ -25,7 +25,7 @@ python cifar10/scripts/build_mutations_cifar.py
 ## Imagenet file how to use
 - To calculate the conductance on the training set run
 ```bash
-python imagenet/scripts/training_conductance.py --num_class=<num_class>
+python imagenet/scripts/training_conductance.py --num_class=<num_class> 
 ```
 - To calculate the conductance on the validation and test set run
 ```bash
@@ -39,10 +39,10 @@ python imagenet/scripts/build_mutations.py --num_class=<num_class> --limit=<limi
 ```bash
 python imagenet/scripts/mutant_predistions.py --num_class=<num_class>
 ```
-- 'num_class' is either 50 or 100, it corresponds to either operate on the 50-classes Imagenet dataset or the 100-classes Imagenet dataset
-- 'limit' is the total number of modified CNN to create
-- 'gamma' is the percentage of model weights to modify
-- 'mode' is the type of operation to apply for modifying the weights. It is either 'NAI' (Neuron Activation Inverse) or 'GF' (Gaussian Fuzz).\
+- 'num_class' is either 50 or 100 (default 100), it corresponds to either operate on the 50-classes Imagenet dataset or the 100-classes Imagenet dataset.
+- 'limit' is the total number of modified CNN to create, default to 100.
+- 'gamma' is the percentage of model weights to modify, default to 0.002.
+- 'mode' is the type of operation to apply for modifying the weights. It is either 'NAI' (Neuron Activation Inverse) or 'GF' (Gaussian Fuzz). default to 'NAI'.\
 
 After computing conductance (with or not LCR) follow code in '100_class_imagenet.ipynb' (or 50) notebook to see how the binary classifier is trained and evaluated.
 
