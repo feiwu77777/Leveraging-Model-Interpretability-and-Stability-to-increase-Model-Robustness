@@ -18,11 +18,12 @@ args = parser.parse_args()
 
 num_class = args.num_class
 
-path = 'Datasets/train{}/'.format(num_class) #path to the dataset of 100 classes Imagenet
+home = '../../'
+path = '../datasets/train{}/'.format(num_class) #path to the dataset of 100 classes Imagenet
 classes = sorted(os.listdir(path))
 
 #the model here is already trained on the 100/50 classes Imagenet, see 'train_reduced_model.py'
-model = create_net('model/reduced_weights{}.h5'.format(num_class), num_class)
+model = create_net('../../model/reduced_weights{}.h5'.format(num_class), num_class)
 
 #get all conv layer in the network, for inception, only the output of mixed layers are considered
 convLayers = get_convLayers(model)
@@ -31,7 +32,7 @@ convBlocks = getBlocks(convLayers)
 
 
 #make prediction on the training set before hand and load them here to save time
-train_pred = pickle.load(open('train_pred{}.p'.format(num_class), 'rb'))
+train_pred = pickle.load(open('../../train_pred{}.p'.format(num_class), 'rb'))
 
 if __name__ == '__main__':
 
@@ -105,7 +106,7 @@ if __name__ == '__main__':
                 for b in range(1, len(convBlocks)):
                     cond_rights[c][i].extend(list(allBlockCond_rights[b][c][i]))
 
-    pickle.dump(cond_rights, open('pickled/cond_rights{}.p'.format(num_class), 'wb'))
-    pickle.dump(cond_wrongs, open('pickled/cond_wrongs{}.p'.format(num_class), 'wb'))
-    pickle.dump(originIndex_rights, open('pickled/originIndex_rights{}.p'.format(num_class), 'wb'))
-    pickle.dump(originIndex_wrongs, open('pickled/originIndex_wrongs{}.p'.format(num_class), 'wb'))
+    pickle.dump(cond_rights, open(home+'pickled/cond_rights{}.p'.format(num_class), 'wb'))
+    pickle.dump(cond_wrongs, open(home+'pickled/cond_wrongs{}.p'.format(num_class), 'wb'))
+    pickle.dump(originIndex_rights, open(home+'pickled/originIndex_rights{}.p'.format(num_class), 'wb'))
+    pickle.dump(originIndex_wrongs, open(home+'pickled/originIndex_wrongs{}.p'.format(num_class), 'wb'))
