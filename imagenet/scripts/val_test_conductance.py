@@ -30,6 +30,7 @@ args = parser.parse_args()
 
 num_class = args.num_class
 
+home = '../../'
 val_path = 'Datasets/val{}/'.format(num_class) #path to the dataset of 100 classes Imagenet
 test_path = 'Datasets/test{}/'.format(num_class) #path to the dataset of 100 classes Imagenet
 val_classes = sorted(os.listdir(val_path))
@@ -138,7 +139,7 @@ if __name__ == '__main__':
                     cond_test[c][i].extend(list(allBlockCond_test[b][c][i]))
     
 
-    pickle.dump(cond_val, open('pickled/cond_val{}.p'.format(num_class), 'wb'))
-    pickle.dump(cond_test, open('pickled/cond_test{}.p'.format(num_class), 'wb'))
-    pickle.dump(originIndex_val, open('pickled/originIndex_val{}.p'.format(num_class), 'wb'))
-    pickle.dump(originIndex_test, open('pickled/originIndex_test{}.p'.format(num_class), 'wb'))
+    pickle.dump(cond_val, open(home + 'pickled/cond_val{}.p'.format(num_class), 'wb'))
+    pickle.dump(cond_test, open(home + 'pickled/cond_test{}.p'.format(num_class), 'wb'))
+    pickle.dump(originIndex_val, open(home + 'pickled/originIndex_val{}.p'.format(num_class), 'wb'))
+    pickle.dump(originIndex_test, open(home + 'pickled/originIndex_test{}.p'.format(num_class), 'wb'))
