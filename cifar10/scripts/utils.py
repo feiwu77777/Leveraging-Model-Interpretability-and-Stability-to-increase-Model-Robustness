@@ -225,7 +225,7 @@ def get_convLayer(model):
             convLayers.append(model.layers[i+1])
     return convLayers
 
-def calculate_cond(model, x_train, train_pred, index, num_class = 10)
+def calculate_cond(model, x_train, train_pred, index, num_class = 10):
 
     #get all conv layer in the network
     #for resnet, only the output of resBlocks are considered (skip connection + normal connection)
