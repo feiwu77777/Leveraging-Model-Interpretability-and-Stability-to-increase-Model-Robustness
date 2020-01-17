@@ -54,7 +54,8 @@ def resnet_layer(inputs,
     return x
 
 
-def resnet_v1(input_shape, depth, num_classes=10):
+def resnet_v1(input_shape: tuple, depth: int, num_classes: int = 10) -> Model:
+    """ Construct a resnet with specified parameters """
 
     if (depth - 2) % 6 != 0:
         raise ValueError('depth should be 6n+2 (eg 20, 32, 44 in [a])')
