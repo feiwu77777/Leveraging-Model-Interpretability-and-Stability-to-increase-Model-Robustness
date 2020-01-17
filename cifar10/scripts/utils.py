@@ -24,13 +24,19 @@ from sklearn.metrics import roc_curve, auc
 
 
 def resnet_layer(inputs,
-                 num_filters=16,
-                 kernel_size=3,
-                 strides=1,
-                 activation='relu',
-                 batch_normalization=True,
-                 conv_first=True):
-    
+                 num_filters: int = 16,
+                 kernel_size: int = 3,
+                 strides: int = 1,
+                 activation: str = 'relu',
+                 batch_normalization: bool = True,
+                 conv_first: bool = True):
+    """
+    Function: helper to the function resnet_v1
+    Inputs: layer characteristics
+    Outputs: a resnet layer
+    """
+
+
     conv = Conv2D(num_filters,
                   kernel_size=kernel_size,
                   strides=strides,
@@ -54,8 +60,8 @@ def resnet_layer(inputs,
     return x
 
 
-def resnet_v1(input_shape: tuple, depth: int, num_classes: int = 10) -> Model:
-    """ 
+def resnet_v1(input_shape: tuple[int], depth: int, num_classes: int = 10):
+    """
     Function: construct a resnet with specified parameters 
     Inputs: characteristics of the neural network
     Output: the specified neural network
@@ -230,7 +236,12 @@ def get_convLayer(model):
             convLayers.append(model.layers[i+1])
     return convLayers
 
-def calculate_cond(model, x_train, train_pred, index, num_class = 10):
+def calculate_cond(model, x_train, train_pred: list[int], index: int, num_class: int = 10):
+    """
+    Function: calculate conductance of predictions made a model
+    Inputs: the model and predictions it made
+    Outputs: conductance values for each prediction
+    """
 
     #get all conv layer in the network
     #for resnet, only the output of resBlocks are considered (skip connection + normal connection)
