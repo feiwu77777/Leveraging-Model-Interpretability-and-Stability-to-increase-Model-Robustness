@@ -206,6 +206,11 @@ def process_cond(convLayers,topFMs, topMeans, wrongs, num_class):
 
 
 def calculate_LCR(model, x_train, index, model_mutants, num_class = 10):
+    """
+    Function: calculate the label change rate of a model using its mutants
+    Inputs: a model, its mutants and a training set to evaluate prediction stability
+    Outputs: LCR corresponding to each prediction
+    """ 
     
     #create a list that map the LCR to the conductance of the good training sample
     L = []
