@@ -17,7 +17,8 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 ![Screenshot from 2019-11-14 14-14-03](https://user-images.githubusercontent.com/34350063/68860117-21a79980-06e9-11ea-9ac2-9e90c84ce78d.png)
 
 ## cifar10 file how to use
-- Follow the 'conductance&mutation.ipynb' notebook to see how conductance and LCR of data are calculated and used to train an error detector to differentiate wrong and correct predictions of a CNN
+- Follow the 'conductance&mutation.ipynb' notebook to see how conductance and LCR of data are calculated and used to train an error detector to differentiate wrong and correct predictions of a CNN.
+- Or compile the following [colab notebook](https://colab.research.google.com/gist/feiwu77777/10cf6aba277c803e98934b74224781e3/conductance-mutation.ipynb) to see how the whole pipelie works.
 - To build modified CNNs (mutants) that will be used to calculate LCR run
 ```bash
 python cifar10/scripts/build_mutations_cifar.py
