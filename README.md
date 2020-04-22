@@ -6,10 +6,10 @@ This is the backbone code of the paper [Leveraging Model Interpretability and St
 - Inputs whose prediction are cancelled are not further processed by the CNN. If the area of application allows it (medical diagnosis, malware detection, autonomous driving), those inputs can be processed by a supplementary system (human specialist, radar/lidar).
 
 ***Summary***
-1. [Overview](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#overview)
-2. [Experimental results](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#experimental-results)
-3. [CIFAR10 file how to use](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#cifar10-file-how-to-use)
-4. [Imagenet file how to use](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#imagenet-file-how-to-use)
+1. [Overview](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#1-overview)
+2. [Experimental results](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#2-experimental-results)
+3. [CIFAR10 file how to use](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#3-cifar10-file-how-to-use)
+4. [Imagenet file how to use](https://github.com/feiwu77777/Leveraging-Model-Interpretability-and-Stability-to-increase-Model-Robustness#4-imagenet-file-how-to-use)
 
 
 ## 1. Overview
